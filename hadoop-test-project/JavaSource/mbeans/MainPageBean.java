@@ -1,11 +1,13 @@
 package mbeans;
+import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import models.Message;
 import models.User;
+import chat.ChatController;
 import database.HbaseDataBasecontroller;
-import database.IDataBaseController;
 import database.PostgreSQLDataBaseController;
 
 
@@ -13,7 +15,7 @@ import database.PostgreSQLDataBaseController;
 @RequestScoped
 public class MainPageBean {
 	
-	private IDataBaseController dbController;
+	private ChatController chatController;
 	
 	private String dbSelected;
 	
@@ -26,23 +28,33 @@ public class MainPageBean {
 	private int insertResultTime;
 
 	public MainPageBean() {
-		
+		this.userFrom = new User();
+		this.userTo = new User();
+		this.message = new Message();
 	}
 	
 	public void changeToPostgreSQL() {
-		this.dbController = new PostgreSQLDataBaseController();
-	}
+		this.chatController = new ChatController(new PostgreSQLDataBaseController());
+		this.dbSelected = "PostgreSQL";
+	}	
 	
 	public void changeToHBASE() {
-		this.dbController = new HbaseDataBasecontroller();
+		this.chatController = new ChatController(new HbaseDataBasecontroller());
+		this.dbSelected = "HBASE";
 	}
 	
 	public void sendMessage() {
-		
+		int startTime = (int) new Date().getTime();
+		this.chatController.sendMessage(this.message);
+		int endTime = (int) new Date().getTime();
+		this.insertResultTime = endTime - startTime;
 	}
 	
 	public void readMessage() {
-			
+		int startTime = (int) new Date().getTime();
+		this.chatController.getMessages(this.userTo, this.userFrom, this.amountOfMessages);
+		int endTime = (int) new Date().getTime();
+		this.searchResultTime = endTime - startTime;
 	}
 	
 	//Getters and setters.

@@ -21,6 +21,14 @@ public class Message extends BaseModel {
 	private String message;
 	private User userFrom;
 	private User userTo;
+	
+	//Construtor
+	
+	public Message() {
+		this.message = "";
+		this.userFrom = new User();
+		this.userTo = new User();
+	}
 		
 	//Getters and setters;
 	

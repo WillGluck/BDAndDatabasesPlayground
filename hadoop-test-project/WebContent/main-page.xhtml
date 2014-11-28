@@ -5,13 +5,55 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" >
 
-<h:body>
-	<h:form id="main-page">
-		<p:button
-			value="Botão"
-			onclick="#{mainPage.connect()}"
-		/>
+	<h:body>
+	<h:form id="form">
+	
+		<p:panelGrid
+			id="panel-grid"
+			columns="2"
+			style="border:100px"
+		>		
+		
+			<p:commandButton
+				value="Mudar banco para PostgreSQL"
+				action="#{mainPage.changeToPostgreSQL()}"
+				update="form:selected_db"/>
+				
+			<p:commandButton 
+				value="Mudar banco para HBase"
+				action="#{mainPage.changeToHBASE()}"
+				update="form:selected_db"/>
+			
+			<h:outputText 
+				id="selected_db"
+				value="Banco selecionado"/>
+			<h:outputText value="#{mainPage.dbSelected}" />
+			
+			<h:outputText value="Tempo da inserção" />		
+			<h:outputText value="#{mainPage.insertResultTime}" />
+			
+			<h:outputText value="Tempo da busca" />		
+			<h:outputText value="#{mainPage.searchResultTime}" />
+			
+			<h:outputText value="Quantidade de mensagens" />
+			<h:inputText value="#{mainPage.amountOfMessages}" />
+			
+			<h:outputText value="Mensagem" />
+			<h:inputText value="#{mainPage.message.message}" />			
+								
+			<p:commandButton 
+				value="Inserir"
+				action="#{mainPage.sendMessage()}"
+				update="form:"/>
+				
+			<p:commandButton 
+				value="Buscar"
+				action="#{mainPage.readMessage()}"
+				update="form:"/>
+			
+			<!-- Seletores com from e to -->
+		
+		</p:panelGrid>					
 	</h:form>
 </h:body>
-
 </html>

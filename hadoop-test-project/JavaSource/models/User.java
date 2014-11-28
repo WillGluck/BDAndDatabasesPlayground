@@ -9,11 +9,18 @@ package models;
  */
 public class User extends BaseModel {
 	
+	//Nome dos campos.
+	
 	public final static String CODE = "code";
 	public  final static String NAME = "name";
 	
 	//Atributos
 	private String name;
+	
+	//Construtor
+	public User() {
+		this.name = "";
+	}
 	
 	//Getters and setters
 	public String getName() {

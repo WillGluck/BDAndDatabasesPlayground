@@ -95,25 +95,4 @@ public class PostgreSQLDataBaseController implements IDataBaseController {
 	private String getFetchSQL(User user, User userFrom, int amount) {
 		return "select * from message m where m.userTo=" + user.getCode() + " and m.userFrom=" + userFrom.getCode() +  " limit " + amount;
 	}
-	
-	
-/*	   public void getAuthors(){
-		      ResultSet rs = null;
-		      PreparedStatement pst = null;
-		      Connection con = getConnection();
-		      String stm = "Select * from produto";
-		      
-		      try {   
-		         pst = con.prepareStatement(stm);
-		         pst.execute();
-		         rs = pst.getResultSet();
-
-		         while(rs.next()){
-		        	 
-		         }
-		      } catch (SQLException e) {
-		         e.printStackTrace();
-		      }
-		   }*/
-
 }
