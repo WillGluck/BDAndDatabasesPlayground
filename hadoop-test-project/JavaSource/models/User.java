@@ -4,7 +4,7 @@ package models;
  * Classe do Modelo de usuário.
  * 
  * @author Will Glück
- * @created 27/11/2014
+ * @created 20/11/2014
  *
  */
 public class User extends BaseModel {

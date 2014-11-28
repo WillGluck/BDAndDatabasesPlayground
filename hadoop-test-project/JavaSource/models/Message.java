@@ -4,7 +4,7 @@ package models;
  * Classe do modelo de mensagem.
  * 
  * @author Will Glück
- * @created 27/11/2014
+ * @created 20/11/2014
  *
  */
 public class Message extends BaseModel {

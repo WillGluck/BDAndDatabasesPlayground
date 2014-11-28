@@ -12,8 +12,8 @@
 			id="panel-grid"
 			columns="2"
 			style="border:100px"
-		>		
-		
+		>
+				
 			<p:commandButton
 				value="Mudar banco para PostgreSQL"
 				action="#{mainPage.changeToPostgreSQL()}"
@@ -24,35 +24,72 @@
 				action="#{mainPage.changeToHBASE()}"
 				update="form:selected_db"/>
 			
-			<h:outputText 
-				id="selected_db"
-				value="Banco selecionado"/>
-			<h:outputText value="#{mainPage.dbSelected}" />
+			<h:outputText value="Banco selecionado"/>
+			<h:outputText
+				id="selected_db" 
+				value="#{mainPage.dbSelected}" />
 			
 			<h:outputText value="Tempo da inserção" />		
-			<h:outputText value="#{mainPage.insertResultTime}" />
+			<h:outputText
+				id="insertion_time" 
+				value="#{mainPage.insertResultTime}" />
 			
 			<h:outputText value="Tempo da busca" />		
-			<h:outputText value="#{mainPage.searchResultTime}" />
+			<h:outputText
+				id="search_time" 
+				value="#{mainPage.searchResultTime}" />
 			
 			<h:outputText value="Quantidade de mensagens" />
-			<h:inputText value="#{mainPage.amountOfMessages}" />
+			<h:inputText
+				id="message_amount" 
+				value="#{mainPage.amountOfMessages}" />
 			
 			<h:outputText value="Mensagem" />
-			<h:inputText value="#{mainPage.message.message}" />			
+			<h:inputText
+				id="message" 
+				value="#{mainPage.message.message}" />			
 								
 			<p:commandButton 
 				value="Inserir"
 				action="#{mainPage.sendMessage()}"
-				update="form:"/>
+				update="form"/>
 				
 			<p:commandButton 
 				value="Buscar"
 				action="#{mainPage.readMessage()}"
-				update="form:"/>
+				update="form"/>
 			
-			<!-- Seletores com from e to -->
-		
+			
+			<h:panelGroup>
+				<h:outputText 
+					value="Para"
+					style="margin:10px"/>
+				<h:selectOneMenu
+					value="#{mainPage.userToCode}">
+					<f:selectItems
+						id="user_to"
+						value="#{mainPage.users}"
+						var="user"
+						itemLabel="#{user.name}"
+						itemValue="#{user.code}"/>
+					<f:ajax listener="#{mainPage.userToChanged}" process="@this" event="change"/>
+				</h:selectOneMenu>			
+			</h:panelGroup>			
+			<h:panelGroup>
+				<h:outputText 
+					value="De" 
+					style="margin:10px"/>
+				<h:selectOneMenu
+					value="#{mainPage.userFromCode}">
+					<f:selectItems
+						id="user_from"
+						value="#{mainPage.users}"
+						var="user"
+						itemLabel="#{user.name}"
+						itemValue="#{user.code}"/>
+					<f:ajax listener="#{mainPage.userFromChanged}" process="@this" event="change"/>
+				</h:selectOneMenu>
+			</h:panelGroup>		
 		</p:panelGrid>					
 	</h:form>
 </h:body>
