@@ -1,4 +1,4 @@
-hadoop-test-project
+DatabasesPlayground
 ===================
 
-Projeto para teste comparativo entre banco sql e no-sql
+A place to test different databases when I need to.
