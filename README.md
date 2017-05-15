@@ -1,4 +1,4 @@
-DatabasesPlayground
+BDAndDatabasesPlayground
 ===================
 
-A place to test different databases when I need to.
+A place to test different BigData apis and databases when I need to.
